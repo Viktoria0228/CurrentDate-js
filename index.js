@@ -2,10 +2,9 @@ const moment = require('moment')
 
 function getDate(){
 
-    setInterval(() => {
-        console.log(moment().format("YYYY/DD/MM HH:mm:ss"))
+    console.log(moment().format("YYYY/DD/MM HH:mm:ss"))
+    console.log(moment().format('dddd'))
           
-    }, 1000)
 }
    
 
