@@ -34,7 +34,31 @@ app.get("/timestamp", (req, res) =>{
 })
 
 app.get("/posts", (req, res)=>{
-    res.status(200).json(posts)
+    console.log(req.query)
+    let skip = 0
+    let take = arrayPosts.length
+    console.log(arrayPosts.length)
+
+    if (req.query.skip == undefined) {
+        skip = parseInt(req.query.skip)
+        if (isNaN(skip)) {
+            return res.status(400).json("skip must be an integer")
+        }
+    }
+
+    if (req.query.take == undefined) {
+        take = parseInt(req.query.take)
+        if (isNaN(take)) {
+            return res.status(400).json("take must be an integer")
+        }
+    }
+
+    const slicedPosts = arrayPosts.slice(skip, skip + take)
+
+
+
+
+    res.status(200).json(slicedPosts)
 })
 
 app.get("/posts/:id", (req, res)=>{
